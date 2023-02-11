@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import { classNames } from './helpers/classNames';
 const Home = React.lazy(() => import('./pages/Home'));
 const About = React.lazy(() => import('./pages/About'));
 import './styles/index.scss';
@@ -13,7 +14,7 @@ export enum Theme {
 const App = () => {
   const { theme, toggleTheme } = useTheme();
   return (
-    <div className={`app ${theme}`}>
+    <div className={classNames('app', {}, [theme])}>
       <button type='button' onClick={toggleTheme}>
         Toggle
       </button>
