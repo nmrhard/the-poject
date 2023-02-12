@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { classNames } from './helpers/classNames';
-const Home = React.lazy(() => import('./pages/Home'));
-const About = React.lazy(() => import('./pages/About'));
+import { classNames } from 'shared/lib/classNames';
+const Home = React.lazy(() => import('pages/Home'));
+const About = React.lazy(() => import('pages/About'));
 import './styles/index.scss';
-import { useTheme } from './theme/useTheme';
+import { useTheme } from 'app/context/theme';
 
 export enum Theme {
   LIGHT = 'light',
