@@ -4,6 +4,7 @@ import { classNames } from 'shared/lib/classNames';
 import './styles/index.scss';
 import { useTheme } from 'app/provider/theme';
 import { AppRouter } from './provider/router';
+import { Navbar } from 'widget/Navbar';
 
 export enum Theme {
   LIGHT = 'light',
@@ -14,11 +15,10 @@ const App = () => {
   const { theme, toggleTheme } = useTheme();
   return (
     <div className={classNames('app', {}, [theme])}>
+      <Navbar />
       <button type='button' onClick={toggleTheme}>
         Toggle
       </button>
-      <Link to={'/'}>Home</Link>
-      <Link to={'/about'}>About</Link>
       <AppRouter />
     </div>
   );
