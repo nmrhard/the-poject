@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames';
 import './styles/index.scss';
 import { useTheme } from 'app/provider/theme';
@@ -12,13 +10,11 @@ export enum Theme {
 }
 
 const App = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   return (
     <div className={classNames('app', {}, [theme])}>
       <Navbar />
-      <button type='button' onClick={toggleTheme}>
-        Toggle
-      </button>
+
       <AppRouter />
     </div>
   );
