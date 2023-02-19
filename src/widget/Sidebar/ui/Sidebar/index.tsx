@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { classNames } from 'shared/lib/classNames';
+import { LangSwitcher } from 'shared/ui/LangSwitcher';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import styles from './Sidebar.module.scss';
 
@@ -25,6 +26,7 @@ const Sidebar = ({ className }: Props) => {
       </button>
       <div className={styles.switchers}>
         <ThemeSwitcher />
+        <LangSwitcher className={styles.lang} />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { classNames } from 'shared/lib/classNames';
 import './styles/index.scss';
 import { useTheme } from 'app/provider/theme';
@@ -14,11 +15,13 @@ const App = () => {
   const { theme } = useTheme();
   return (
     <div className={classNames('app', {}, [theme])}>
-      <Navbar />
-      <div className='content-page'>
-        <Sidebar />
-        <AppRouter />
-      </div>
+      <React.Suspense fallback=''>
+        <Navbar />
+        <div className='content-page'>
+          <Sidebar />
+          <AppRouter />
+        </div>
+      </React.Suspense>
     </div>
   );
 };
