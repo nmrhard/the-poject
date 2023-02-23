@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { RouteProps } from 'react-router-dom';
+
 const Home = React.lazy(() => import('pages/Home'));
 const About = React.lazy(() => import('pages/About'));
 

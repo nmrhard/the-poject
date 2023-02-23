@@ -2,9 +2,9 @@ import * as React from 'react';
 import { classNames } from 'shared/lib/classNames';
 import './styles/index.scss';
 import { useTheme } from 'app/provider/theme';
-import { AppRouter } from './provider/router';
 import { Navbar } from 'widget/Navbar';
 import { Sidebar } from 'widget/Sidebar/ui';
+import { AppRouter } from './provider/router';
 
 export enum Theme {
   LIGHT = 'light',
@@ -15,9 +15,9 @@ const App = () => {
   const { theme } = useTheme();
   return (
     <div className={classNames('app', {}, [theme])}>
-      <React.Suspense fallback=''>
+      <React.Suspense fallback="">
         <Navbar />
-        <div className='content-page'>
+        <div className="content-page">
           <Sidebar />
           <AppRouter />
         </div>
