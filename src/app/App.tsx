@@ -15,9 +15,9 @@ const App = () => {
   const { theme } = useTheme();
   return (
     <div className={classNames('app', {}, [theme])}>
-      <React.Suspense fallback=''>
+      <React.Suspense fallback="">
         <Navbar />
-        <div className='content-page'>
+        <div className="content-page">
           <Sidebar />
           <AppRouter />
         </div>
