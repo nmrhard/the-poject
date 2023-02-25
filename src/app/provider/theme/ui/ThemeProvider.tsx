@@ -5,7 +5,8 @@ import {
   ThemeContext,
 } from '../lib/ThemeContext';
 
-const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
+const defaultTheme =
+  (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
 
 export const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = React.useState<Theme>(defaultTheme);
@@ -14,7 +15,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
       theme,
       setTheme,
     }),
-    [theme, setTheme],
+    [theme, setTheme]
   );
 
   return (
