@@ -17,11 +17,12 @@ const Sidebar = ({ className }: Props) => {
 
   return (
     <div
+      data-testid='sidebar'
       className={classNames(styles.Sidebar, { [styles.collapsed]: collapsed }, [
         className,
       ])}
     >
-      <button type="button" onClick={onToggle}>
+      <button type='button' onClick={onToggle}>
         Toggle
       </button>
       <div className={styles.switchers}>
