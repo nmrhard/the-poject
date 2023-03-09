@@ -1,14 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
 import { Theme } from 'app/provider/theme';
-import {Home} from './Home';
+import { Home } from './Home';
 
 export default {
-    title: 'pages/Home',
-    component: Home,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
+  title: 'pages/Home',
+  component: Home,
+  argTypes: {
+    backgroundColor: { control: 'color' },
+  },
 } as ComponentMeta<typeof Home>;
 
 const Template: ComponentStory<typeof Home> = (args) => <Home {...args} />;

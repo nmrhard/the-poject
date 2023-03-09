@@ -1,4 +1,5 @@
 import * as React from 'react';
+/* eslint-disable operator-linebreak */
 import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,

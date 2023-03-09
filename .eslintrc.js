@@ -35,6 +35,8 @@ module.exports = {
       { markupOnly: true, ignoreAttribute: ['data-testid', 'to'] },
     ],
     'max-len': ['error', { ignoreComments: true, code: 100 }],
+    'jsx-quotes': ['error', 'prefer-single'],
+    'comma-dangle': 'off',
   },
   globals: {
     __IS_DEV__: true,
