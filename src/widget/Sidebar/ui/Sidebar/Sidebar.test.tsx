@@ -10,7 +10,7 @@ describe('Sidebar', () => {
 
   test('test toggle', () => {
     renderWithTranslation(<Sidebar />);
-    const toggleBtn = screen.getByRole('button', { name: /toggle/i });
+    const toggleBtn = screen.getByRole('button', { name: /переключить/i });
     expect(screen.getByTestId('sidebar')).toBeInTheDocument();
     fireEvent.click(toggleBtn);
     expect(screen.getByTestId('sidebar')).toHaveClass('collapsed');
