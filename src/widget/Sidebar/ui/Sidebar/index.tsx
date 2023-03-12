@@ -31,7 +31,7 @@ const Sidebar = ({ className }: Props) => {
     >
       <Button
         className={styles.collapseBtn}
-        data-testid='sidebar-toogle'
+        data-testid='sidebar-toggle'
         theme={ThemeButton.BACKGROUND_INVERTED}
         onClick={onToggle}
         square
