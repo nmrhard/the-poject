@@ -6,14 +6,17 @@ import ErrorBoundary from 'app/provider/ErrorBoundary/ui/ErrorBoundary';
 import 'app/styles/index.scss';
 
 import 'shared/config/i18n';
+import { StoreProvider } from 'app/provider/StoreProvider';
 
 render(
-  <BrowserRouter>
-    <ErrorBoundary>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
-    </ErrorBoundary>
-  </BrowserRouter>,
+  <StoreProvider>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </ErrorBoundary>
+    </BrowserRouter>
+  </StoreProvider>,
   document.getElementById('root')
 );
