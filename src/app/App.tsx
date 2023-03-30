@@ -3,6 +3,8 @@ import { classNames } from 'shared/lib/classNames';
 import { useTheme } from 'app/provider/theme';
 import { Navbar } from 'widget/Navbar';
 import { Sidebar } from 'widget/Sidebar/ui';
+import { userActions } from 'entities/User';
+import { useDispatch } from 'react-redux';
 import { AppRouter } from './provider/router';
 
 export enum Theme {
@@ -12,6 +14,11 @@ export enum Theme {
 
 const App = () => {
   const { theme } = useTheme();
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(userActions.initAuthData());
+  }, [dispatch]);
 
   return (
     <div className={classNames('app', {}, [])}>
