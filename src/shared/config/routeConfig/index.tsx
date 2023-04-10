@@ -1,4 +1,5 @@
 import { NotFoundPage } from 'pages/NotFound';
+import { ProfilePage } from 'pages/Profile';
 import * as React from 'react';
 import { RouteProps } from 'react-router-dom';
 
@@ -8,12 +9,14 @@ const About = React.lazy(() => import('pages/About'));
 export enum AppRouter {
   MAIN = 'main',
   ABOUT = 'about',
+  PROFILE = 'profile',
   NOT_FOUND = 'not_found',
 }
 
 export const RoutePath: Record<AppRouter, string> = {
   [AppRouter.MAIN]: '/',
   [AppRouter.ABOUT]: '/about',
+  [AppRouter.PROFILE]: '/profile',
   [AppRouter.NOT_FOUND]: '*',
 };
 
@@ -25,6 +28,10 @@ export const routeConfig: Record<AppRouter, RouteProps> = {
   [AppRouter.ABOUT]: {
     path: RoutePath.about,
     element: <About />,
+  },
+  [AppRouter.PROFILE]: {
+    path: RoutePath.profile,
+    element: <ProfilePage />,
   },
   [AppRouter.NOT_FOUND]: {
     path: RoutePath.not_found,

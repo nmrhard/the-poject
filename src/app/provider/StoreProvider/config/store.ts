@@ -1,9 +1,5 @@
 /* eslint-disable implicit-arrow-linebreak */
-import {
-  configureStore,
-  DeepPartial,
-  ReducersMapObject,
-} from '@reduxjs/toolkit';
+import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { StateSchema } from './StateSchema';
@@ -32,3 +28,5 @@ export const createReduxStore = (
 
   return store;
 };
+
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
