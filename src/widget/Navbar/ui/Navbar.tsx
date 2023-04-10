@@ -13,7 +13,7 @@ interface NavbarProps {
   className?: string;
 }
 
-const Navbar = ({ className }: NavbarProps) => {
+const Navbar = React.memo(({ className }: NavbarProps) => {
   const { t } = useTranslation();
   const [isAuthModal, setAuthModal] = React.useState(false);
   const authData = useSelector(getUserAuthData);
@@ -59,6 +59,6 @@ const Navbar = ({ className }: NavbarProps) => {
       )}
     </div>
   );
-};
+});
 
 export { Navbar };
