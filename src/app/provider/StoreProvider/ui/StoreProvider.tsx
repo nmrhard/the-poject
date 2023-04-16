@@ -1,4 +1,4 @@
-import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
+import { ReducersMapObject } from '@reduxjs/toolkit';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
