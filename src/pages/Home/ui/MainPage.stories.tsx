@@ -11,7 +11,7 @@ export default {
   },
 } as ComponentMeta<typeof Home>;
 
-const Template: ComponentStory<typeof Home> = (args: any) => <Home {...args} />;
+const Template: ComponentStory<typeof Home> = () => <Home />;
 
 export const Normal = Template.bind({});
 Normal.args = {};

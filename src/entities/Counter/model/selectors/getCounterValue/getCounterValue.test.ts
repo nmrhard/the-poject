@@ -1,5 +1,4 @@
 import { StateSchema } from 'app/provider/StoreProvider';
-import { DeepPartial } from '@reduxjs/toolkit';
 import { getCounterValue } from './getCounterValue';
 
 describe('getCounterValue', () => {
@@ -10,6 +9,6 @@ describe('getCounterValue', () => {
       },
     };
     const result = getCounterValue(state as StateSchema);
-    expect(result).toEqual(state.counter.value);
+    expect(result).toEqual(state.counter && state?.counter.value);
   });
 });

@@ -1,5 +1,5 @@
 /* eslint-disable implicit-arrow-linebreak */
-type Mods = Record<string, boolean | string>;
+export type Mods = Record<string, boolean | string | undefined>;
 
 export const classNames = (
   cls: string,

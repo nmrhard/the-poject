@@ -1,8 +1,9 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { classNames } from 'shared/lib/classNames';
+import { Mods, classNames } from 'shared/lib/classNames';
 import React, {
+  MutableRefObject,
   ReactNode,
   useCallback,
   useEffect,
@@ -32,7 +33,7 @@ export const Modal = ({
 }: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setMounted] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
   const { theme } = useTheme();
 
   React.useEffect(() => {
@@ -76,7 +77,7 @@ export const Modal = ({
     };
   }, [isOpen, onKeyDown]);
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [cls.opened]: isOpen,
     [cls.isClosing]: isClosing,
   };
