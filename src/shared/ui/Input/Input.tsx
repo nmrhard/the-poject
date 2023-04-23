@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { classNames } from 'shared/lib/classNames';
+import { Mods, classNames } from 'shared/lib/classNames';
 import styles from './Input.module.scss';
 
 type HTMLInputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
-  'value' | 'onChange'
+  'value' | 'onChange' | 'readOnly'
 >;
 
 interface InputProps extends HTMLInputProps {
   className?: string;
-  value?: string;
+  value?: string | number;
   onChange?: (value: string) => void;
+  readonly?: boolean;
 }
 
 export const Input = (props: InputProps) => {
@@ -20,6 +21,7 @@ export const Input = (props: InputProps) => {
     onChange,
     type = 'text',
     placeholder,
+    readonly,
     ...rest
   } = props;
 
@@ -27,14 +29,19 @@ export const Input = (props: InputProps) => {
     onChange?.(event.target.value);
   };
 
+  const mods: Mods = {
+    [styles.readonly]: readonly,
+  };
+
   return (
-    <div className={classNames(styles.InputWrapper, {}, [className])}>
+    <div className={classNames(styles.InputWrapper, mods, [className])}>
       {placeholder && <div className={styles.placeholder}>{placeholder}</div>}
       <input
         className={styles.input}
         type={type}
         value={value}
         onChange={handleChange}
+        readOnly={readonly}
         {...rest}
       />
     </div>

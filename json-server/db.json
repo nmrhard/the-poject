@@ -28,10 +28,10 @@
   "profile": {
     "firstName": "John",
     "lastName": "Doe",
-    "age": 30,
+    "age": 33,
     "currency": "USD",
     "country": "USA",
-    "city": "New York",
+    "city": "Kyiv",
     "username": "admin",
     "avatar": "https://i.pravatar.cc/300"
   }
