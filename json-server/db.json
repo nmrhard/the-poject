@@ -29,10 +29,10 @@
     "firstName": "John",
     "lastName": "Doe",
     "age": 33,
-    "currency": "USD",
-    "country": "USA",
+    "currency": "UAH",
+    "country": "Ukraine",
     "city": "Kyiv",
     "username": "admin",
-    "avatar": "https://i.pravatar.cc/300"
+    "avatar": "https://i.pravatar.cc/100"
   }
 }
