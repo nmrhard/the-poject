@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames';
 import { useTheme } from 'app/provider/theme';
 import { Navbar } from 'widget/Navbar';
 import { Sidebar } from 'widget/Sidebar/ui';
-import { userActions } from 'entities/User';
-import { useDispatch } from 'react-redux';
+import { userActions, getUserInited } from 'entities/User';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppRouter } from './provider/router';
 
 export enum Theme {
@@ -16,6 +15,7 @@ export enum Theme {
 const App = () => {
   const { theme } = useTheme();
   const dispatch = useDispatch();
+  const inited = useSelector(getUserInited);
 
   React.useEffect(() => {
     dispatch(userActions.initAuthData());
@@ -27,7 +27,7 @@ const App = () => {
         <Navbar />
         <div className='content-page'>
           <Sidebar />
-          <AppRouter />
+          {inited && <AppRouter />}
         </div>
       </React.Suspense>
     </div>
