@@ -6,7 +6,7 @@ import { RouteProps } from 'react-router-dom';
 const Home = React.lazy(() => import('pages/Home'));
 const About = React.lazy(() => import('pages/About'));
 
-type AppRoutesProps = RouteProps & {
+export type AppRoutesProps = RouteProps & {
   authOnly?: boolean;
 };
 
