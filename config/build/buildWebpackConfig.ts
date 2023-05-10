@@ -6,7 +6,7 @@ import { buildResolvers } from './buildResolvers';
 import { buildDevServer } from './buildDevServer';
 
 export const buildWebpackConfig = (
-  options: BuildOptions,
+  options: BuildOptions
 ): webpack.Configuration => {
   const { mode, paths, isDev } = options;
 
@@ -17,6 +17,7 @@ export const buildWebpackConfig = (
       filename: '[name].[contenthash].js',
       path: paths.build,
       clean: true,
+      publicPath: '/',
     },
     plugins: buildPlugins(options),
     module: {
