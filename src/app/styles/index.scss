@@ -1,8 +1,8 @@
-@import "reset";
-@import "variables/global";
-@import "themes/normal";
-@import "themes/dark";
-@import "themes/orange";
+@import 'reset';
+@import 'variables/global';
+@import 'themes/normal';
+@import 'themes/dark';
+@import 'themes/orange';
 
 body {
   font: var(--font-m);
@@ -24,4 +24,5 @@ body {
   padding-left: 45px;
   height: calc(100vh - var(--navbar-height));
   overflow-y: auto;
+  width: 100%;
 }

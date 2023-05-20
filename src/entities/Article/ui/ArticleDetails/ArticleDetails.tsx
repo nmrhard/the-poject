@@ -19,7 +19,13 @@ import { Avatar } from 'shared/ui/Avatar/Avatar';
 import AboutIcon from 'shared/assets/icons/about-20-20.svg';
 import MainIcon from 'shared/assets/icons/main-20-20.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
+import {
+  ArticleBlock,
+  ArticleBlockType,
+} from 'entities/Article/model/types/article';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import styles from './ArticleDetails.module.scss';
 
 type ArticleDetailsProps = {
@@ -37,6 +43,23 @@ export const ArticleDetails = ({ className, id }: ArticleDetailsProps) => {
   const isLoading = useSelector(getArticleDetailsLoading);
   const article = useSelector(getArticleDetailsData);
   const error = useSelector(getArticleDetailsError);
+
+  const renderBlock = (block: ArticleBlock) => {
+    switch (block.type) {
+      case ArticleBlockType.CODE:
+        return (
+          <ArticleCodeBlockComponent block={block} className={styles.block} />
+        );
+      case ArticleBlockType.IMAGE:
+        return <span />;
+      case ArticleBlockType.TEXT:
+        return (
+          <ArticleTextBlockComponent className={styles.block} block={block} />
+        );
+      default:
+        return null;
+    }
+  };
 
   React.useEffect(() => {
     dispatch(fetchArticleById(id));
@@ -83,6 +106,7 @@ export const ArticleDetails = ({ className, id }: ArticleDetailsProps) => {
           <Icon Svg={AboutIcon} className={styles.icon} />
           <Text text={String(article?.createdAt)} />
         </div>
+        {article?.blocks.map((block) => renderBlock(block))}
       </>
     );
   }
