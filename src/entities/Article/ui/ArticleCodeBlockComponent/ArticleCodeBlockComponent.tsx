@@ -15,6 +15,6 @@ export const ArticleCodeBlockComponent = ({
   <div
     className={classNames(styles.ArticleCodeBlockComponent, {}, [className])}
   >
-    <Code>{block.code}</Code>
+    <Code text={block.code} />
   </div>
 );
