@@ -1,4 +1,5 @@
 {
+  "Add comment": "Add comment",
   "Age": "Age",
   "Article details": "Article details",
   "Article didn't load ": "Article didn't load ",
@@ -24,6 +25,7 @@
   "Save": "Save",
   "Select country": "Select country",
   "Select currency": "Select currency",
+  "Send": "Send",
   "Server error": "Server error",
   "Try to reload the page": "Try to reload the page",
   "Username": "Username",

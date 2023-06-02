@@ -16,6 +16,7 @@ import {
   DynamicModuleLoader,
   ReducerList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { sendComment } from 'features/AddCommentForm/model/services/sendComment/sendComment';
 import styles from './AddCommentForm.module.scss';
 
 interface AddCommentFormProps {
@@ -26,7 +27,7 @@ const reducers: ReducerList = {
   addCommentForm: addCommentFormReducer,
 };
 
-export const AddCommentForm = ({ className }: AddCommentFormProps) => {
+const AddCommentForm = ({ className }: AddCommentFormProps) => {
   const { t } = useTranslation('profile');
   const text = useSelector(getAddCommentFormText);
   const error = useSelector(getAddCommentFormError);
@@ -36,16 +37,23 @@ export const AddCommentForm = ({ className }: AddCommentFormProps) => {
     dispatch(addCommentFormActions.setText(value));
   };
 
+  const onSendComment = () => {
+    dispatch(sendComment());
+  };
+
   return (
     <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(styles.AddCommentForm, {}, [className])}>
         <Input
+          className={styles.input}
           placeholder={t('Add comment')}
           value={text}
           onChange={onCommentTextChange}
         />
-        <Button>{t('Send')}</Button>
+        <Button onClick={onSendComment}>{t('Send')}</Button>
       </div>
     </DynamicModuleLoader>
   );
 };
+
+export default AddCommentForm;

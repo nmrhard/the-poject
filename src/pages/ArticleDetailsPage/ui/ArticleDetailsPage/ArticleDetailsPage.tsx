@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getArticleCommentsIsLoading } from 'pages/ArticleDetailsPage/model/selectors/comments';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { fetchCommentsByArticleId } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import AddCommentForm from 'features/AddCommentForm/ui/AddCommentForm/AddCommentForm';
 import styles from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -51,6 +52,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
       <div className={classNames(styles.ArticleDetailsPage, {}, [className])}>
         <ArticleDetails id={id} />
         <Text className={styles.commentTitle} title={t('Comments')} />
+        <AddCommentForm />
         <CommentList isLoading={commentsIsLoading} comments={comments} />
       </div>
     </DynamicModuleLoader>

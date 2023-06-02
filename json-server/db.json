@@ -19,7 +19,9 @@
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "views": 1022,
       "createdAt": "26.02.2022",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -148,6 +150,18 @@
       "userId": "2",
       "text": "asdasdasd",
       "id": "MVvGQoZ"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "www",
+      "id": "azkmb1X"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "qwerty",
+      "id": "aFDTPe9"
     }
   ],
   "users": [
