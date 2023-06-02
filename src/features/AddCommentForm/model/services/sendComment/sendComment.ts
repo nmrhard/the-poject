@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/provider/StoreProvider';
 import { Comment } from 'entities/Comment';
