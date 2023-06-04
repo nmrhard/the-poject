@@ -10,6 +10,7 @@ const data = {
   lastName: 'admin',
   country: Country.Ukraine,
   city: 'Kharkiv',
+  id: '1',
 };
 
 describe('updateProfileData', () => {

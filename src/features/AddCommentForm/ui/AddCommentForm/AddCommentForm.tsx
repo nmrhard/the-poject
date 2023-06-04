@@ -16,18 +16,18 @@ import {
   DynamicModuleLoader,
   ReducerList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { sendComment } from 'features/AddCommentForm/model/services/sendComment/sendComment';
 import styles from './AddCommentForm.module.scss';
 
-interface AddCommentFormProps {
+export interface AddCommentFormProps {
   className?: string;
+  onSendComment: (text: string) => void;
 }
 
 const reducers: ReducerList = {
   addCommentForm: addCommentFormReducer,
 };
 
-const AddCommentForm = ({ className }: AddCommentFormProps) => {
+const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
   const { t } = useTranslation('profile');
   const text = useSelector(getAddCommentFormText);
   const error = useSelector(getAddCommentFormError);
@@ -37,8 +37,9 @@ const AddCommentForm = ({ className }: AddCommentFormProps) => {
     dispatch(addCommentFormActions.setText(value));
   };
 
-  const onSendComment = () => {
-    dispatch(sendComment());
+  const onSendHandler = () => {
+    onSendComment(text || '');
+    onCommentTextChange('');
   };
 
   return (
@@ -50,7 +51,7 @@ const AddCommentForm = ({ className }: AddCommentFormProps) => {
           value={text}
           onChange={onCommentTextChange}
         />
-        <Button onClick={onSendComment}>{t('Send')}</Button>
+        <Button onClick={onSendHandler}>{t('Send')}</Button>
       </div>
     </DynamicModuleLoader>
   );

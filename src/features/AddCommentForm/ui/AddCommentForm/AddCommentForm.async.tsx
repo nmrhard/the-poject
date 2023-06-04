@@ -1,4 +1,7 @@
 /* eslint-disable implicit-arrow-linebreak */
-import { lazy } from 'react';
+import * as React from 'react';
+import { AddCommentFormProps } from './AddCommentForm';
 
-export const AddCommentFormAsync = lazy(() => import('./AddCommentForm'));
+export const AddCommentFormAsync = React.lazy<React.FC<AddCommentFormProps>>(
+  () => import('./AddCommentForm')
+);

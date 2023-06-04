@@ -9,7 +9,7 @@ import styles from './CommentCard.module.scss';
 
 interface CommentCardProps {
   className?: string;
-  comment: Comment;
+  comment?: Comment;
   isLoading?: boolean;
 }
 
@@ -30,8 +30,17 @@ export const CommentCard = ({
     );
   }
 
+  if (!comment) {
+    return null;
+  }
+
   return (
-    <div className={classNames(styles.CommentCard, {}, [className])}>
+    <div
+      className={classNames(styles.CommentCard, {}, [
+        className,
+        styles.loading,
+      ])}
+    >
       <AppLink
         className={styles.header}
         to={`${RoutePath.profile}${comment.user.id}`}
