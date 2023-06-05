@@ -25,7 +25,6 @@ export interface ArticleTextBlock extends ArticleBlockBase {
   paragraphs: string[];
   title?: string;
 }
-
 export type ArticleBlock =
   | ArticleCodeBlock
   | ArticleTextBlock
@@ -46,4 +45,9 @@ export interface Article {
   createdAt: string;
   type: ArticleType[];
   blocks: ArticleBlock[];
+}
+
+export enum ArticleView {
+  LIST = 'LIST',
+  GRID = 'GRID',
 }
