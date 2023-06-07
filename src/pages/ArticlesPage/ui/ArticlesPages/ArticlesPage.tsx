@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
-import { Article, ArticleList } from 'entities/Article';
+import { Article, ArticleList, ArticleView } from 'entities/Article';
 import styles from './ArticlesPage.module.scss';
 
 interface ArticlesPageProps {
@@ -15,6 +15,12 @@ const article = {
   img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
   views: 1022,
   createdAt: '26.02.2022',
+  user: {
+    id: '1',
+    username: 'admin',
+    avatar:
+      'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
+  },
   type: ['IT'],
   blocks: [
     {
@@ -83,7 +89,12 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 
   return (
     <div className={classNames(styles.ArticlesPage, {}, [className])}>
-      <ArticleList articles={[article]} />
+      <ArticleList
+        view={ArticleView.LIST}
+        articles={new Array(16)
+          .fill(0)
+          .map((item, index) => ({ ...article, id: index.toString() }))}
+      />
     </div>
   );
 };

@@ -12,7 +12,7 @@ export const Card: React.FC<CardProps> = ({
   children,
   ...props
 }) => (
-  <div className={classNames(styles.card, {}, [className])} {...props}>
+  <div className={classNames(styles.Card, {}, [className])} {...props}>
     {children}
   </div>
 );

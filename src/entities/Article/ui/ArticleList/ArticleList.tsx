@@ -18,10 +18,16 @@ export const ArticleList = ({
   isLoading,
   view = ArticleView.GRID,
 }: ArticleListProps) => (
-  <div className={classNames(styles.articleList, {}, [className])}>
+  <div
+    className={classNames(styles.ArticleList, {}, [className, styles[view]])}
+  >
     {articles.length > 0
       ? articles.map((article) => (
-          <ArticleListItem article={article} view={view} />
+          <ArticleListItem
+            className={styles.card}
+            article={article}
+            view={view}
+          />
         ))
       : null}
   </div>
