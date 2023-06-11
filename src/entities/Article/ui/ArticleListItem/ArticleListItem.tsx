@@ -1,5 +1,10 @@
 import { classNames } from 'shared/lib/classNames';
-import { Article, ArticleView } from 'entities/Article/model/types/article';
+import {
+  Article,
+  ArticleBlockType,
+  ArticleTextBlock,
+  ArticleView,
+} from 'entities/Article/model/types/article';
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import { Text } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
@@ -7,6 +12,9 @@ import { Card } from 'shared/ui/Card/Card';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import styles from './ArticleListItem.module.scss';
 
 interface ArticleListItemProps {
@@ -21,6 +29,11 @@ export const ArticleListItem = ({
   view,
 }: ArticleListItemProps) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const onOpenArticle = () => {
+    navigate(RoutePath.article_details + article.id);
+  };
 
   const types = (
     <Text text={article.type.join(', ')} className={styles.types} />
@@ -40,7 +53,7 @@ export const ArticleListItem = ({
           styles[view],
         ])}
       >
-        <Card className={styles.card}>
+        <Card className={styles.card} onClick={onOpenArticle}>
           <div className={styles.imageWrapper}>
             <img className={styles.img} src={article.img} alt={article.title} />
             <Text text={article.createdAt} className={styles.date} />
@@ -54,6 +67,10 @@ export const ArticleListItem = ({
       </div>
     );
   }
+
+  const textBlock = article.blocks.find(
+    (block) => block.type === ArticleBlockType.TEXT
+  ) as ArticleTextBlock;
 
   return (
     <div
@@ -71,8 +88,16 @@ export const ArticleListItem = ({
         <Text title={article.title} className={styles.title} />
         {types}
         <img src={article.img} alt={article.title} className={styles.img} />
+        {textBlock && (
+          <ArticleTextBlockComponent
+            className={styles.textBlock}
+            block={textBlock}
+          />
+        )}
         <div className={styles.footer}>
-          <Button theme={ThemeButton.OUTLINE}>{t('Read more')}</Button>
+          <Button theme={ThemeButton.OUTLINE} onClick={onOpenArticle}>
+            {t('Read more')}
+          </Button>
         </div>
       </Card>
     </div>
