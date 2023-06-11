@@ -1,19 +1,16 @@
-import { useTranslation } from 'react-i18next';
+/* eslint-disable max-len */
 import { classNames } from 'shared/lib/classNames';
+import { ArticleList, ArticleView } from 'entities/Article';
 import styles from './ArticlesPage.module.scss';
 
 interface ArticlesPageProps {
   className?: string;
 }
 
-const ArticlesPage = ({ className }: ArticlesPageProps) => {
-  const { t } = useTranslation();
-
-  return (
-    <div className={classNames(styles.ArticlesPage, {}, [className])}>
-      {t('Articles page')}
-    </div>
-  );
-};
+const ArticlesPage = ({ className }: ArticlesPageProps) => (
+  <div className={classNames(styles.ArticlesPage, {}, [className])}>
+    <ArticleList view={ArticleView.LIST} articles={[]} />
+  </div>
+);
 
 export default ArticlesPage;
