@@ -1,11 +1,16 @@
 /* eslint-disable max-len */
 import { classNames } from 'shared/lib/classNames';
-import { ArticleList, ArticleView } from 'entities/Article';
+import {
+  ArticleList,
+  ArticleView,
+  ArticleViewSelector,
+} from 'entities/Article';
 import {
   DynamicModuleLoader,
   ReducerList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
+  articlesPageActions,
   articlesPageReducer,
   getArticles,
 } from 'pages/ArticlesPage/model/slices/articlesPageSlice';
@@ -35,13 +40,19 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const view = useSelector(getArticlesPageView);
   const error = useSelector(getArticlesPageError);
 
+  const onChangeView = (view: ArticleView) => {
+    dispatch(articlesPageActions.setView(view));
+  };
+
   useInitialEffect(() => {
     dispatch(fetchArticlesList());
+    dispatch(articlesPageActions.initState());
   });
 
   return (
     <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(styles.ArticlesPage, {}, [className])}>
+        <ArticleViewSelector view={view} onViewClick={onChangeView} />
         <ArticleList isLoading={isLoading} view={view} articles={articles} />
       </div>
     </DynamicModuleLoader>
