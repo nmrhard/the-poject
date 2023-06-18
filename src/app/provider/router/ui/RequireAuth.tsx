@@ -3,7 +3,7 @@ import { getUserAuthData } from 'entities/User';
 import { useLocation, Navigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig';
 
-export const RequireAuth = ({ children }: {children: JSX.Element}) => {
+export const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const auth = useSelector(getUserAuthData);
   const location = useLocation();
 
