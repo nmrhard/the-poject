@@ -20,7 +20,9 @@ import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticl
 import { useSelector } from 'react-redux';
 import {
   getArticlesPageError,
+  getArticlesPageHasMore,
   getArticlesPageIsLoading,
+  getArticlesPageNum,
   getArticlesPageView,
 } from 'pages/ArticlesPage/model/selectors/articlesPageSelectors';
 import { Page } from 'shared/ui/Page/Page';
@@ -40,9 +42,22 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const isLoading = useSelector(getArticlesPageIsLoading);
   const view = useSelector(getArticlesPageView);
   const error = useSelector(getArticlesPageError);
+  const page = useSelector(getArticlesPageNum);
+  const hasMore = useSelector(getArticlesPageHasMore);
 
   const onChangeView = (view: ArticleView) => {
     dispatch(articlesPageActions.setView(view));
+  };
+
+  const onLoadNextPart = () => {
+    if (hasMore && !isLoading) {
+      dispatch(articlesPageActions.setPage(page + 1));
+      dispatch(
+        fetchArticlesList({
+          page: page + 1,
+        })
+      );
+    }
   };
 
   useInitialEffect(() => {
@@ -56,7 +71,10 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <Page className={classNames(styles.ArticlesPage, {}, [className])}>
+      <Page
+        className={classNames(styles.ArticlesPage, {}, [className])}
+        onScrollEnd={onLoadNextPart}
+      >
         <ArticleViewSelector view={view} onViewClick={onChangeView} />
         <ArticleList isLoading={isLoading} view={view} articles={articles} />
       </Page>
