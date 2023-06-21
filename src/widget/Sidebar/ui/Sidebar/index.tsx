@@ -22,7 +22,7 @@ const Sidebar = React.memo(({ className }: Props) => {
   };
 
   return (
-    <div
+    <aside
       data-testid='sidebar'
       className={classNames(styles.Sidebar, { [styles.collapsed]: collapsed }, [
         className,
@@ -47,7 +47,7 @@ const Sidebar = React.memo(({ className }: Props) => {
         <ThemeSwitcher />
         <LangSwitcher short={collapsed} className={styles.lang} />
       </div>
-    </div>
+    </aside>
   );
 });
 

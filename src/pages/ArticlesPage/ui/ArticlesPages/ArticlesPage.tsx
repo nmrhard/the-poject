@@ -23,6 +23,8 @@ import {
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from 'pages/ArticlesPage/model/selectors/articlesPageSelectors';
+import { Page } from 'shared/ui/Page/Page';
+import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import styles from './ArticlesPage.module.scss';
 
 interface ArticlesPageProps {
@@ -44,17 +46,28 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     dispatch(articlesPageActions.setView(view));
   };
 
+  const onLoadNextPart = () => {
+    dispatch(fetchNextArticlesPage());
+  };
+
   useInitialEffect(() => {
-    dispatch(fetchArticlesList());
     dispatch(articlesPageActions.initState());
+    dispatch(
+      fetchArticlesList({
+        page: 1,
+      })
+    );
   });
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames(styles.ArticlesPage, {}, [className])}>
+      <Page
+        className={classNames(styles.ArticlesPage, {}, [className])}
+        onScrollEnd={onLoadNextPart}
+      >
         <ArticleViewSelector view={view} onViewClick={onChangeView} />
         <ArticleList isLoading={isLoading} view={view} articles={articles} />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };
