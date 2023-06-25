@@ -5,13 +5,12 @@ import {
   Reducer,
   ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { NavigateOptions } from 'react-router';
-import { To } from 'history';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
-import { StateSchema, ThunkExtraArg } from './StateSchema';
+import { scrollStateReducer } from 'features/ScrollState';
 import { createReducerManager } from './reducerManager';
+import { StateSchema, ThunkExtraArg } from './StateSchema';
 
 export const createReduxStore = (
   initialState?: StateSchema,
@@ -21,6 +20,7 @@ export const createReduxStore = (
     ...asyncReducers,
     counter: counterReducer,
     user: userReducer,
+    scrollState: scrollStateReducer,
   };
 
   const reducerManager = createReducerManager(rootReducer);
