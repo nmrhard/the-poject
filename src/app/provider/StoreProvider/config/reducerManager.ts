@@ -4,11 +4,11 @@ import {
   combineReducers,
   Reducer,
 } from '@reduxjs/toolkit';
-import { StateSchema } from '../StoreProvider';
 import {
   MountedReducers,
   ReducerManager,
   StateSchemaKeys,
+  StateSchema,
 } from './StateSchema';
 
 export function createReducerManager(

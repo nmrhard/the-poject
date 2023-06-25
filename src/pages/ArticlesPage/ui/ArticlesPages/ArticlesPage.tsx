@@ -23,7 +23,7 @@ import {
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from 'pages/ArticlesPage/model/selectors/articlesPageSelectors';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widget/Page/Page';
 import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { initArticlesPage } from 'pages/ArticlesPage/model/services/initArticlesPage/initArticlesPage';
 import styles from './ArticlesPage.module.scss';

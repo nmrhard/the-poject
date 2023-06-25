@@ -6,8 +6,6 @@ import {
   ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { NavigateOptions } from 'react-router';
-import { To } from 'history';
 import { CounterSchema } from 'entities/Counter';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
@@ -16,11 +14,12 @@ import { ArticleDetailsSchema } from 'entities/Article';
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
-import { type } from 'os';
+import { ScrollStateSchema } from 'features/ScrollState';
 
 export interface StateSchema {
   counter: CounterSchema;
   user: UserSchema;
+  scrollState: ScrollStateSchema;
 
   // Async reducers
   loginForm?: LoginSchema;
