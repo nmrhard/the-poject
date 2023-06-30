@@ -1,6 +1,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { StateSchema } from 'app/provider/StoreProvider';
 import { ArticleView } from 'entities/Article';
+import { ArticleSortField } from 'entities/Article/model/types/article';
 
 export const getArticlesPageIsLoading = (state: StateSchema) =>
   state.articlesPage?.isLoading || false;
@@ -16,3 +17,9 @@ export const getArticlesPageHasMore = (state: StateSchema) =>
   state.articlesPage?.hasMore;
 export const getArticlesPageInitialized = (state: StateSchema) =>
   state.articlesPage?._initialized;
+export const getArticlesPageOrder = (state: StateSchema) =>
+  state.articlesPage?.order ?? 'asc';
+export const getArticlesPageSort = (state: StateSchema) =>
+  state.articlesPage?.sort ?? ArticleSortField.CREATED_AT;
+export const getArticlesPageSearch = (state: StateSchema) =>
+  state.articlesPage?.search ?? '';
