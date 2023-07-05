@@ -12,6 +12,7 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import {
   getArticlesPageError,
   getArticlesPageIsLoading,
@@ -37,13 +38,14 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const isLoading = useSelector(getArticlesPageIsLoading);
   const view = useSelector(getArticlesPageView);
   const error = useSelector(getArticlesPageError);
+  const [searchParams] = useSearchParams();
 
   const onLoadNextPart = () => {
     dispatch(fetchNextArticlesPage());
   };
 
   useInitialEffect(() => {
-    dispatch(initArticlesPage());
+    dispatch(initArticlesPage(searchParams));
   });
 
   return (
