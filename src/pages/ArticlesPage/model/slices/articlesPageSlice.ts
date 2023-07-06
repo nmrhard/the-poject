@@ -9,7 +9,10 @@ import {
 import { StateSchema } from 'app/provider/StoreProvider';
 import { Article, ArticleView } from 'entities/Article';
 import { ARTICLES_LOCAL_STORAGE_KEY } from 'shared/const/localStorage';
-import { ArticleSortField } from 'entities/Article/model/types/article';
+import {
+  ArticleSortField,
+  ArticleType,
+} from 'entities/Article/model/types/article';
 import { SortOrder } from 'shared/types';
 import { ArticlesPageSchema } from '../types/articlesPageSchema';
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
@@ -37,6 +40,7 @@ const articlePageSlice = createSlice({
     sort: ArticleSortField.CREATED_AT,
     order: 'asc',
     search: '',
+    type: ArticleType.ALL,
   }),
   reducers: {
     setView: (state, action: PayloadAction<ArticleView>) => {
@@ -54,6 +58,9 @@ const articlePageSlice = createSlice({
     },
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload;
+    },
+    setType: (state, action: PayloadAction<ArticleType>) => {
+      state.type = action.payload;
     },
     initState: (state) => {
       const view = localStorage.getItem(

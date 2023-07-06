@@ -3,6 +3,7 @@ import {
   getArticlesPageOrder,
   getArticlesPageSearch,
   getArticlesPageSort,
+  getArticlesPageType,
   getArticlesPageView,
 } from 'pages/ArticlesPage/model/selectors/articlesPageSelectors';
 import { articlesPageActions } from 'pages/ArticlesPage/model/slices/articlesPageSlice';
@@ -21,6 +22,8 @@ import { ArticleSortSelector } from 'entities/Article/ui/ArticleSortSelector/Art
 import { SortOrder } from 'shared/types';
 import { Input } from 'shared/ui/Input/Input';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
+import { Tabs, TabItem } from 'shared/ui/Tabs/Tabs';
+import { ArticleType } from 'entities/Article/model/types/article';
 import styles from './ArticlePageFilters.module.scss';
 
 interface ArticlePageFiltersProps {
@@ -34,6 +37,26 @@ export const ArticlePageFilters = ({ className }: ArticlePageFiltersProps) => {
   const sort = useSelector(getArticlesPageSort);
   const order = useSelector(getArticlesPageOrder);
   const search = useSelector(getArticlesPageSearch);
+  const type = useSelector(getArticlesPageType);
+
+  const typeTabs: TabItem[] = [
+    {
+      value: ArticleType.ALL,
+      content: t('All articles'),
+    },
+    {
+      value: ArticleType.IT,
+      content: t('IT'),
+    },
+    {
+      value: ArticleType.ECONOMICS,
+      content: t('Economics'),
+    },
+    {
+      value: ArticleType.SCIENCE,
+      content: t('Science'),
+    },
+  ];
 
   const fetchData = () => {
     dispatch(fetchArticlesList({ replace: true }));
@@ -63,6 +86,12 @@ export const ArticlePageFilters = ({ className }: ArticlePageFiltersProps) => {
     debouncedFetchData();
   };
 
+  const onChangeType = (tab: TabItem) => {
+    dispatch(articlesPageActions.setType(tab.value as ArticleType));
+    dispatch(articlesPageActions.setPage(1));
+    debouncedFetchData();
+  };
+
   return (
     <div className={classNames(styles.ArticlePageFilters, {}, [className])}>
       <div className={styles.sortWrapper}>
@@ -81,6 +110,12 @@ export const ArticlePageFilters = ({ className }: ArticlePageFiltersProps) => {
           placeholder={t('Search')}
         />
       </Card>
+      <Tabs
+        className={styles.tabs}
+        tabs={typeTabs}
+        value={type}
+        onTabClick={onChangeType}
+      />
     </div>
   );
 };
