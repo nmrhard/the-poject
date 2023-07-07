@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 import * as React from 'react';
-import { classNames } from 'utils/classNames';
+import { classNames } from 'shared/lib/classNames';
 import { Card, CardTheme } from 'shared/ui/Card/Card';
 import styles from './Tabs.module.scss';
 
@@ -17,7 +17,7 @@ interface TabsProps {
 }
 
 export const Tabs = ({ className, tabs, value, onTabClick }: TabsProps) => {
-  const handleTabClick = (tab: TabItem) => () => () => onTabClick(tab);
+  const handleTabClick = (tab: TabItem) => () => onTabClick(tab);
 
   return (
     <div className={classNames(styles.Tabs, {}, [className])}>
