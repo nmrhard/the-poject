@@ -5,9 +5,9 @@ import { Text, TextSize } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Article, ArticleView } from 'entities/Article/model/types/article';
-import styles from './ArticleList.module.scss';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeletom';
+import styles from './ArticleList.module.scss';
 
 interface ArticleListProps {
   className?: string;

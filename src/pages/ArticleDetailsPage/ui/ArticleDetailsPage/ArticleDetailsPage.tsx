@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
-import { ArticleDetails } from 'entities/Article';
+import { ArticleDetails, ArticleList } from 'entities/Article';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CommentList } from 'entities/Comment';
 import { Text } from 'shared/ui/Text/Text';
@@ -22,6 +22,12 @@ import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/ad
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig';
 import { Page } from 'widget/Page/Page';
+import {
+  articleDetailsPageRecommendationReducers,
+  getArticleDetailsPageRecommendations,
+} from 'pages/ArticleDetailsPage/model/slices/articleDetailsPageRecommendationSlice';
+import { getArticleRecommendationIsLoading } from 'pages/ArticleDetailsPage/model/selectors/recommendation';
+import { fetchArticlesRecommendations } from 'pages/ArticleDetailsPage/model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import styles from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -30,6 +36,7 @@ interface ArticleDetailsPageProps {
 
 const reducers: ReducerList = {
   articleDetailsComments: articleDetailsCommentsReducers,
+  articleDetailsPageRecommendation: articleDetailsPageRecommendationReducers,
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
@@ -37,6 +44,12 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const comments = useSelector(getArticleComments.selectAll);
+  const recommendations = useSelector(
+    getArticleDetailsPageRecommendations.selectAll
+  );
+  const recommendationsIsLoading = useSelector(
+    getArticleRecommendationIsLoading
+  );
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
   const navigate = useNavigate();
 
@@ -50,6 +63,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
+    dispatch(fetchArticlesRecommendations());
   });
 
   if (!id) {
@@ -67,6 +81,12 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
           {t('Back')}
         </Button>
         <ArticleDetails id={id} />
+        <Text className={styles.commentTitle} title={t('Recommendation')} />
+        <ArticleList
+          articles={recommendations}
+          isLoading={recommendationsIsLoading}
+          className={styles.recommendations}
+        />
         <Text className={styles.commentTitle} title={t('Comments')} />
         <AddCommentForm onSendComment={onSendComment} />
         <CommentList isLoading={commentsIsLoading} comments={comments} />
