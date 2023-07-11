@@ -1,19 +1,21 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-indent */
+import { HTMLAttributeAnchorTarget } from 'react';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Article, ArticleView } from 'entities/Article/model/types/article';
-import styles from './ArticleList.module.scss';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeletom';
+import styles from './ArticleList.module.scss';
 
 interface ArticleListProps {
   className?: string;
   articles: Article[];
   isLoading?: boolean;
   view?: ArticleView;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticleList = ({
@@ -21,6 +23,7 @@ export const ArticleList = ({
   articles,
   isLoading,
   view = ArticleView.GRID,
+  target,
 }: ArticleListProps) => {
   const { t } = useTranslation();
 
@@ -48,6 +51,7 @@ export const ArticleList = ({
               article={article}
               view={view}
               key={article.id}
+              target={target}
             />
           ))
         : null}

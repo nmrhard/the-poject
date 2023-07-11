@@ -33,9 +33,9 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': [
       'error',
-      { markupOnly: true, ignoreAttribute: ['data-testid', 'to'] },
+      { markupOnly: true, ignoreAttribute: ['data-testid', 'to', 'target'] },
     ],
-    'max-len': ['error', { ignoreComments: true, code: 100 }],
+    'max-len': ['error', { ignoreComments: true, code: 125 }],
     'jsx-quotes': ['error', 'prefer-single'],
     'comma-dangle': 'off',
     'react-hooks/rules-of-hooks': 'error',
