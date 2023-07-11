@@ -2,6 +2,6 @@
 import { StateSchema } from 'app/provider/StoreProvider';
 
 export const getArticleRecommendationIsLoading = (state: StateSchema) =>
-  state.articleDetailsPageRecommendation?.isLoading;
+  state.articleDetailsPage?.recommendation.isLoading;
 export const getArticleRecommendationError = (state: StateSchema) =>
-  state.articleDetailsPageRecommendation?.error;
+  state.articleDetailsPage?.recommendation.error;

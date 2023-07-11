@@ -9,10 +9,7 @@ import {
   DynamicModuleLoader,
   ReducerList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import {
-  articleDetailsCommentsReducers,
-  getArticleComments,
-} from 'pages/ArticleDetailsPage/model/slices/articleDetailsCommentSlice';
+import { getArticleComments } from 'pages/ArticleDetailsPage/model/slices/articleDetailsCommentSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArticleCommentsIsLoading } from 'pages/ArticleDetailsPage/model/selectors/comments';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
@@ -22,12 +19,10 @@ import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/ad
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig';
 import { Page } from 'widget/Page/Page';
-import {
-  articleDetailsPageRecommendationReducers,
-  getArticleDetailsPageRecommendations,
-} from 'pages/ArticleDetailsPage/model/slices/articleDetailsPageRecommendationSlice';
+import { getArticleDetailsPageRecommendations } from 'pages/ArticleDetailsPage/model/slices/articleDetailsPageRecommendationSlice';
 import { getArticleRecommendationIsLoading } from 'pages/ArticleDetailsPage/model/selectors/recommendation';
 import { fetchArticlesRecommendations } from 'pages/ArticleDetailsPage/model/services/fetchArticleRecommendations/fetchArticleRecommendations';
+import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slices';
 import styles from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -35,8 +30,7 @@ interface ArticleDetailsPageProps {
 }
 
 const reducers: ReducerList = {
-  articleDetailsComments: articleDetailsCommentsReducers,
-  articleDetailsPageRecommendation: articleDetailsPageRecommendationReducers,
+  articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
@@ -86,6 +80,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
           articles={recommendations}
           isLoading={recommendationsIsLoading}
           className={styles.recommendations}
+          target='_blank'
         />
         <Text className={styles.commentTitle} title={t('Comments')} />
         <AddCommentForm onSendComment={onSendComment} />

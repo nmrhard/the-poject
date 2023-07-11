@@ -1,12 +1,15 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import { Reducer } from '@reduxjs/toolkit';
 import { ReduxStoreWithManager } from 'app/provider/StoreProvider';
-import { StateSchemaKeys } from 'app/provider/StoreProvider/config/StateSchema';
+import {
+  StateSchema,
+  StateSchemaKeys,
+} from 'app/provider/StoreProvider/config/StateSchema';
 import * as React from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
 export type ReducerList = {
-  [name in StateSchemaKeys]?: Reducer;
+  [name in StateSchemaKeys]?: Reducer<NonNullable<StateSchema[name]>>;
 };
 
 interface DynamicModuleLoaderProps {
