@@ -5,6 +5,7 @@ import { classNames } from 'shared/lib/classNames';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
 import { getCanEditArticle } from 'pages/ArticleDetailsPage/model/selectors/article';
+import { getArticleDetailsData } from 'entities/Article';
 import styles from './ArticleDetailsPageHeader.module.scss';
 
 interface ArticleDetailsPageHeaderProps {
@@ -17,9 +18,14 @@ export const ArticleDetailsPageHeader = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
   const canEdit = useSelector(getCanEditArticle);
+  const article = useSelector(getArticleDetailsData);
 
   const onBackToList = () => {
     navigate(RoutePath.articles);
+  };
+
+  const onEditArticle = () => {
+    navigate(`${RoutePath.article_details}${article?.id}/edit`);
   };
 
   return (
@@ -33,7 +39,7 @@ export const ArticleDetailsPageHeader = ({
         <Button
           className={styles.editButton}
           theme={ThemeButton.OUTLINE}
-          onClick={onBackToList}
+          onClick={onEditArticle}
         >
           {t('Edit')}
         </Button>

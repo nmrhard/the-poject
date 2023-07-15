@@ -1,5 +1,7 @@
+import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames';
 import { useTranslation } from 'react-i18next';
+import { Page } from 'widget/Page/Page';
 import styles from './ArticleEditPage.module.scss';
 
 interface ArticleEditPageProps {
@@ -8,11 +10,13 @@ interface ArticleEditPageProps {
 
 const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
   const { t } = useTranslation();
+  const { id } = useParams<{ id: string }>();
+  const isEdit = Boolean(id);
 
   return (
-    <div className={classNames(styles.ArticleEditPage, {}, [className])}>
-      {t('ArticleEditPage')}
-    </div>
+    <Page className={classNames(styles.ArticleEditPage, {}, [className])}>
+      {isEdit ? t('Edit article') : t('Create new article')}
+    </Page>
   );
 };
 
