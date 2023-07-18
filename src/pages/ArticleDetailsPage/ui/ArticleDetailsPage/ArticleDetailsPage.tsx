@@ -2,7 +2,7 @@
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { ArticleDetails, ArticleList } from 'entities/Article';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { CommentList } from 'entities/Comment';
 import { Text } from 'shared/ui/Text/Text';
 import {
@@ -16,14 +16,13 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { fetchCommentsByArticleId } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import AddCommentForm from 'features/AddCommentForm/ui/AddCommentForm/AddCommentForm';
 import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import { RoutePath } from 'shared/config/routeConfig';
 import { Page } from 'widget/Page/Page';
 import { getArticleDetailsPageRecommendations } from 'pages/ArticleDetailsPage/model/slices/articleDetailsPageRecommendationSlice';
 import { getArticleRecommendationIsLoading } from 'pages/ArticleDetailsPage/model/selectors/recommendation';
 import { fetchArticlesRecommendations } from 'pages/ArticleDetailsPage/model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slices';
 import styles from './ArticleDetailsPage.module.scss';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 
 interface ArticleDetailsPageProps {
   className?: string;
@@ -45,11 +44,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     getArticleRecommendationIsLoading
   );
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-  const navigate = useNavigate();
-
-  const onBackToList = () => {
-    navigate(RoutePath.articles);
-  };
 
   const onSendComment = (text: string) => {
     dispatch(addCommentForArticle(text));
@@ -71,9 +65,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <Page className={classNames(styles.ArticleDetailsPage, {}, [className])}>
-        <Button theme={ThemeButton.OUTLINE} onClick={onBackToList}>
-          {t('Back')}
-        </Button>
+        <ArticleDetailsPageHeader />
         <ArticleDetails id={id} />
         <Text className={styles.commentTitle} title={t('Recommendation')} />
         <ArticleList

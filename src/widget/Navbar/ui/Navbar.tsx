@@ -7,6 +7,9 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig';
 import styles from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -34,6 +37,18 @@ const Navbar = React.memo(({ className }: NavbarProps) => {
   if (authData) {
     return (
       <header className={classNames(styles.navbar, {}, [className])}>
+        <Text
+          className={styles.appName}
+          title={t('The app')}
+          theme={TextTheme.INVERTED}
+        />
+        <AppLink
+          className={styles.createButton}
+          to={RoutePath.article_create}
+          theme={AppLinkTheme.SECONDARY}
+        >
+          {t('Create new article')}
+        </AppLink>
         <Button
           className={styles.links}
           onClick={onLogout}
