@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { routeConfig, AppRoutesProps } from 'shared/config/routeConfig';
 import { Route, Routes } from 'react-router-dom';
-import { PageLoader } from 'shared/ui/PageLoader';
+import { PageLoader } from 'widget/PageLoader';
 import { RequireAuth } from './RequireAuth';
 
 const AppRouter = () => {
